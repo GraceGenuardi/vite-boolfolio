@@ -1,28 +1,39 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import Posts from './components/Posts.vue'
+import axios from 'axios'
+
+export default {
+  components: {
+    Posts
+  },
+  data() {
+    return {
+      projects: []
+    }
+  },
+  created() {
+    axios.get('http://localhost:8000/api/projects')
+      .then(response => {
+        this.projects = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+}
 </script>
 
 <template>
-  <div>
-    
-      <img src="https://www.dailymobile.ir/wp-content/uploads/2016/05/Star-Music-Tag-Editor.png" alt="logo" width="200px">
-    
-    
+  <div class="container">
+    <h1 class="title">
+      Posts
+    </h1>
+    <Posts />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style >
+.title {
+  padding: 2rem 0;
 }
 </style>
