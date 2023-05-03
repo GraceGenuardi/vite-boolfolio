@@ -1,35 +1,16 @@
 <script>
-import Posts from './components/Posts.vue'
-import axios from 'axios'
-
+// import Posts from './components/Posts.vue'
+import NavBar from './components/NavBar.vue';
 export default {
   components: {
-    Posts
-  },
-  data() {
-    return {
-      projects: []
-    }
-  },
-  created() {
-    axios.get('http://localhost:8000/api/projects')
-      .then(response => {
-        this.projects = response.data
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    NavBar,
+    // Posts
   }
 }
 </script>
 
 <template>
-  <div class="container">
-    <h1 class="title">
-      Posts
-    </h1>
-    <Posts />
-  </div>
+  <router-view></router-view>
 </template>
 
 <style >
@@ -37,3 +18,4 @@ export default {
   padding: 2rem 0;
 }
 </style>
+
